@@ -1,0 +1,61 @@
+FECHA: 11/08/2024 
+ALUMNO: Emmanuel Velasquez Geron
+
+-------------------------------------------------------------------------------------------
+
+
+CREATE TABLE departamentos (
+    clavedepto CHAR(3),
+    nomdepto VARCHAR(36),
+    clavejefe CHAR(6),
+    clavedepsup CHAR(3)
+);
+
+CREATE TABLE proyectos (
+    numproy CHAR(6),
+    nomproy VARCHAR(45),
+    clavedepto CHAR(3),
+    horashombre DECIMAL(5,2),
+    fechaini DATE,
+    fechafin DATE,
+    numproysup CHAR(6)
+);
+
+CREATE TABLE empleados (
+    matricula CHAR(6),
+    nombre VARCHAR(12),
+    apellido VARCHAR(30),
+    numdepto CHAR(3),
+    extension CHAR(4),
+    fechaing DATE,
+    puesto VARCHAR(20),    
+    genero VARCHAR(10), 
+    fechanac DATE,
+    salario DECIMAL(9,2),
+    comision DECIMAL(9,2)
+);
+
+
+------------------------------------------------------------------------------------------------
+
+
+ALTER TABLE departamentos
+ADD CONSTRAINT pk_departamentos PRIMARY KEY (clavedepto);
+
+ALTER TABLE proyectos
+ADD CONSTRAINT pk_proyectos PRIMARY KEY (numproy);
+
+ALTER TABLE empleados
+ADD CONSTRAINT pk_empleados PRIMARY KEY (matricula);
+
+ALTER TABLE departamentos
+ADD CONSTRAINT fk_clavedepsup FOREIGN KEY (clavedepsup) REFERENCES departamentos(clavedepto);
+
+ALTER TABLE proyectos
+ADD CONSTRAINT fk_clavedepto_proyectos FOREIGN KEY (clavedepto) REFERENCES departamentos(clavedepto);
+
+ALTER TABLE proyectos
+ADD CONSTRAINT fk_numproysup FOREIGN KEY (numproysup) REFERENCES proyectos(numproy);
+
+ALTER TABLE empleados
+ADD CONSTRAINT fk_numdepto_empleados FOREIGN KEY (numdepto) REFERENCES departamentos(clavedepto);

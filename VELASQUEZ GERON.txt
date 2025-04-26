@@ -1,0 +1,88 @@
+
+CREATE TABLE Giros (
+    giro smallint PRIMARY KEY, 
+    nomgiro varchar(20)
+);
+
+CREATE TABLE Zonas (
+    ZONA smallint PRIMARY KEY,
+    NOMZONA char(20)
+);
+
+CREATE TABLE Empresas (
+    empresa smallint PRIMARY KEY,
+    nombre varchar(45),
+    giro smallint,
+    nivel smallint,
+    FOREIGN KEY (giro) REFERENCES Giros(giro),
+    FOREIGN KEY (nivel) REFERENCES Niveles(nivel)
+);
+
+CREATE TABLE Niveles (
+    nivel smallint PRIMARY KEY,
+    nomnivel varchar(20)
+);
+
+
+CREATE TABLE Sucursales (
+    EMPRESA smallint,
+    SUCURSAL smallint PRIMARY KEY,
+    NOMSUC char(40),
+    DIR varchar(60),
+    TEL1 integer,
+    TEL2 integer,
+    FAX integer,
+    EMAIL char(35),
+    COLONIA smallint,
+    ZONA smallint,
+    PRIMARY KEY (SUCURSAL),
+    FOREIGN KEY (EMPRESA) REFERENCES Empresas(empresa),
+    FOREIGN KEY (COLONIA) REFERENCES Colonias(COLONIA),
+    FOREIGN KEY (ZONA) REFERENCES Zonas(ZONA)
+);
+
+
+CREATE TABLE Colonias (
+    COLONIA smallint PRIMARY KEY,
+    NOMCOLONIA char(20),
+    CP integer,
+    CIUDAD smallint,
+    FOREIGN KEY (CIUDAD) REFERENCES Ciudades(CIUDAD)
+);
+
+CREATE TABLE Registran (
+    EMPRESA smallint,
+    SUCURSAL smallint,
+    PERIODO smallint,
+    VALOR decimal(10,2),
+    PRIMARY KEY (EMPRESA, SUCURSAL),
+    FOREIGN KEY (EMPRESA) REFERENCES Empresas(empresa),
+    FOREIGN KEY (SUCURSAL) REFERENCES Sucursales(SUCURSAL)
+);
+
+CREATE TABLE Ciudades (
+    CIUDAD smallint PRIMARY KEY,
+    NOMCIUDAD char(20)
+);
+
+
+ALTER TABLE Giros ADD PRIMARY KEY (giro);
+ALTER TABLE Zonas ADD PRIMARY KEY (ZONA);
+ALTER TABLE Empresas ADD PRIMARY KEY (empresa);
+ALTER TABLE Niveles ADD PRIMARY KEY (nivel);
+ALTER TABLE Sucursales ADD PRIMARY KEY (SUCURSAL);
+ALTER TABLE Colonias ADD PRIMARY KEY (COLONIA);
+ALTER TABLE Ciudades ADD PRIMARY KEY (CIUDAD); 
+
+ALTER TABLE Empresas ADD CONSTRAINT fk_giro FOREIGN KEY (giro) REFERENCES Giros(giro);
+ALTER TABLE Empresas ADD CONSTRAINT fk_nivel FOREIGN KEY (nivel) REFERENCES Niveles(nivel);
+
+ALTER TABLE Sucursales ADD CONSTRAINT fk_empresa FOREIGN KEY (EMPRESA) REFERENCES Empresas(empresa);
+ALTER TABLE Sucursales ADD CONSTRAINT fk_colonia FOREIGN KEY (COLONIA) REFERENCES Colonias(COLONIA);
+ALTER TABLE Sucursales ADD CONSTRAINT fk_zona FOREIGN KEY (ZONA) REFERENCES Zonas(ZONA);
+
+ALTER TABLE Colonias ADD CONSTRAINT fk_ciudad FOREIGN KEY (CIUDAD) REFERENCES Ciudades(CIUDAD);
+
+ALTER TABLE Registran ADD PRIMARY KEY (EMPRESA, SUCURSAL);
+ALTER TABLE Registran ADD CONSTRAINT fk_registran_empresa FOREIGN KEY (EMPRESA) REFERENCES Empresas(empresa);
+ALTER TABLE Registran ADD CONSTRAINT fk_registran_sucursal FOREIGN KEY (SUCURSAL) REFERENCES Sucursales(SUCURSAL);

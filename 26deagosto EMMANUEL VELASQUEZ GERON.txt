@@ -1,0 +1,28 @@
+CREATE TABLE Personal
+(
+Clave Smallint Not Null,
+Nombre Varchar(30) Not Null,
+Depto Smallint Not Null,
+Puesto Char(15) Not Null,
+Antiguedad Smallint,
+Salario decimal(9,2)Not Null,
+Comision Decimal(9,2)
+);
+
+CREATE TABLE Deptos
+(
+Clavedepto Smallint Not Null,
+Nomdep Char(20) Not Null,
+Jefe Smallint Not Null,
+Division Char(30) Not Null,
+Ciudad Char(30)
+);
+
+CREATE TABLE Organizacion
+(
+Clavedepto Smallint Not Null,
+Nomdep Char(20) Not Null,
+Jefe Smallint Not Null,
+Division Char(30) Not Null,
+Ciudad Char(30)
+);

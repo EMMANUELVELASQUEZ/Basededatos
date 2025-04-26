@@ -1,0 +1,13 @@
+28 agosto del 2024
+
+
+ALTER TABLE FACTURAS
+ADD FOREIGN KEY (CVECLI),
+REFERENCES CLIENTES (CVECLI),
+RFC CHAR(13);
+
+-------------------------------------------
+
+Alter table  
+
+

@@ -1,0 +1,51 @@
+29 DE AGOSTO DEL 2024
+-------------------------------------------------------------------------------------
+CREATE TABLE moviemientos
+ID_MOVI int NOT NULL,
+FECHA date DEFAULT NULL,
+HORA time DEFAULT NULL,
+TIPO charr(1) NOT NULL,
+ID_USUARIO int NOT NULL,
+ID_PROVEEDOR int NOT NULL,
+MONTO decimal (10,2) DEFAULT NULL
+);
+
+CREATE TABLE provedores (
+ID_PROVEEDOR int NOT NULL, 
+NOMBRE varchar(35) NOT NULL,
+DIRECCION varchar (25) NOT NULL,
+TELEFONO int DEFAULT NULL
+);
+
+CREATE TABLE usuarios (
+ID_USUARIO int NOT NULL,
+NOMBRE varchar(35) NOT NULL,
+CONTRASEÑA varchar(10) NOT NULL,
+DESCUENTO smallint(6) DEFAULT NULL
+
+);
+--------------------------------------------------------------------------------------
+
+ALTER TABLE movimientos
+ADD PRIMARY KEY (ID_MOVI);
+
+ALTER TABLE provedores
+ADD PRIMARY KEY (ID_PROVEEDOR);
+
+ALTER TABLE usuarios
+ADD PRIMARY KEY (ID_USUARIO);
+
+
+-------------------------------------------------------------------------------------
+
+ALTER TABLE movimientos
+ADD CONSTRAINT FK_ID_USUARIO
+FOREIGN KEY (ID_USUARIO) REFERENCES usuarios(ID_USUARIO);
+
+ALTER TABLE movimientos
+ADD CONSTRAINT FK_ID_PROVEEDOR
+FOREIGN KEY (ID_PROVEEDOR) REFERENCES provedores(ID_PROVEEDOR);
+
+
+
+

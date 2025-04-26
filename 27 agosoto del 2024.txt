@@ -1,0 +1,40 @@
+27 agosoto del 2024
+créate table facturas
+
+FOLIO SMALLINT PK,
+FECHA DATE,
+SUBTOTAL DECIMAL(10,2)
+IVA DECIMAL (8,2),
+CVECLI SMALLINT;
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
+Create table artículos
+
+cveart smallint pk,
+nombre char(35),
+precio decimal(8,2),
+existencias smallint,
+cvelinea smallint,
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+créate table partidas
+
+partida smallint pk,
+folio smallint,
+cveart smallint,
+pventa decimal (8,2),
+cantidad smallint
+;
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+créate table líneas 
+
+cvelinea smallint pk,
+nomlinea char(25)
+;
+
