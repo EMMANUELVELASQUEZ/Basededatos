@@ -1,6 +1,6 @@
 # 📚 **Aprendizaje de SQL Básico con Ruby y SQLite3** 🖥️
 
-¡Bienvenido! Este proyecto está diseñado para ayudarte a aprender **SQL básico** utilizando el lenguaje de programación **Ruby** y la base de datos **SQLite3**. A continuación, se muestran las operaciones básicas de SQL que puedes realizar para interactuar con una base de datos.
+¡Bienvenido! Este proyecto está diseñado para ayudarte a aprender **SQL básico** base de datos **SQLite3**. A continuación, se muestran las operaciones básicas de SQL que puedes realizar para interactuar con una base de datos.
 
 ---
 
